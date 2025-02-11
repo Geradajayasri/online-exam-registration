@@ -151,7 +151,7 @@ function navigateTo(screenId) {
 
 function generateHallTicket() {
     document.getElementById("ticketName").textContent = localStorage.getItem("fullName");
-    document.getElementById("ticketDob").textContent = localStorage.getItem("dob");
+    // document.getElementById("ticketDob").textContent = localStorage.getItem("dob");
     document.getElementById("ticketExamDate").textContent = localStorage.getItem("examDate");
 
     let photo = localStorage.getItem("photo");
@@ -219,3 +219,13 @@ async function registerUser(fullName, email, password, photo, signature) {
     });
     return response.json();
   }
+  // Function to generate a random 6-digit Hall Ticket Number
+function generateHallTicketNumber() {
+    return Math.floor(100000 + Math.random() * 900000); // 6-digit number
+}
+
+// Assign HNum dynamically to the Hall Ticket
+document.addEventListener("DOMContentLoaded", function () {
+    let hallTicketNumber = generateHallTicketNumber(); // Generate a unique number
+    document.getElementById("hall-ticket-number").innerText = hallTicketNumber;
+});
