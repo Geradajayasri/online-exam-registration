@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Exam Registration</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Screen 1: Landing Page -->
+    <div class="container" id="screen1">
+        <h1 class="title">Online Exam Registration</h1>
+        <button class="register-btn" onclick="navigateTo('screen2')">Register Now</button>
+    </div>
+    
+    <!-- Screen 2: Login Page -->
+    <div class="container hidden" id="screen2">
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Enter your email" required>
+        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+        <button onclick="validateLogin()">Login</button>
+        <p>Don't have an account? <a href="#" onclick="navigateTo('screen3')">Register</a></p>
+    </div>
+    
+    <!-- Screen 3: Registration Page -->
+     <!-- Screen 3: Registration Page -->
+<div class="container hidden" id="screen3">
+    <h2>Register</h2>
+
+    <input type="text" id="fullName" placeholder="Full Name" required>
+    <input type="email" id="regEmail" placeholder="Email" required>
+    <input type="password" id="regPassword" placeholder="Password" required>
+
+    <!-- New Fields: Photo & Signature Upload -->
+    <label for="photoUpload">Upload Photo (Max: 200x200px, JPG/PNG):</label>
+    <input type="file" id="photoUpload" accept="image/png, image/jpeg" required>
+
+    <label for="signatureUpload">Upload Signature (Max: 300x100px, JPG/PNG):</label>
+    <input type="file" id="signatureUpload" accept="image/png, image/jpeg" required>
+
+    <button onclick="validateRegistration()">Next</button>
+</div>
+
+    
+    <!-- Screen 4: Exam Details Page -->
+    <div class="container hidden" id="screen4">
+        <h2>Exam Details</h2>
+        <select id="examType" onchange="updateBranches()">
+            <option value="">-- Select Exam --</option>
+            <option value="engineering">Engineering</option>
+            <option value="medical">Medical</option>
+            <option value="arts">Arts</option>
+        </select>
+        <select id="branch">
+            <option value="">-- Select Branch --</option>
+        </select>
+        <input type="date" id="examDate" required>
+        <button onclick="validateExamDetails()">Next</button>
+
+        
+    </div>
+    
+    <!-- Screen 5: Payment Page -->
+     <!-- Screen 5: Payment Page -->
+<div class="container hidden" id="screen5">
+    <h2>Payment</h2>
+    <p>Scan & Pay Using PhonePe App</p>
+    <img src="qr-code.png" alt="QR Code" class="qr-image">
+    <p>Owner's Number: <strong>9885755846</strong></p>
+    <button onclick="navigateTo('screen6')">Pay Now</button>
+
+    
+</div>
+
+    
+    
+    <!-- Screen 6: Verify Payment Page -->
+     
+<div class="container hidden" id="screen6">
+    <h2>Verify Payment</h2>
+    <input type="text" placeholder="Transaction ID" required>
+    <button onclick="navigateTo('screen7')">Verify & Submit</button>
+</div>
+
+
+
+    
+    
+    <!-- Screen 7: Payment Confirmation Page -->
+    <div class="container hidden" id="screen7">
+        <h2>Payment Successful</h2>
+        <button onclick="generateHallTicket(); navigateTo('screen8');">Download Hall Ticket</button>
+
+        <!-- <button onclick="navigateTo('screen8')">Download Hall Ticket</button> -->
+    </div>
+    
+    <!-- Screen 8: Hall Ticket Page -->
+    <div id="hallTicket" class="container hidden">
+        <h2>Hall Ticket</h2>
+        
+        <p><strong>Name:</strong> <span id="ticketName"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="ticketDob"></span></p>
+        <p><strong>Exam Date:</strong> <span id="ticketExamDate"></span></p>
+    
+        <!-- Photo & Signature Section -->
+        <div class="photo-signature">
+            <img id="ticketPhoto" class="ticket-photo" alt="Uploaded Photo">
+            <img id="ticketSignature" class="ticket-signature" alt="Uploaded Signature">
+        </div>
+    
+        <button onclick="downloadHallTicket()">Download</button>
+    </div>
+    
+    
+</body>
+</html>
